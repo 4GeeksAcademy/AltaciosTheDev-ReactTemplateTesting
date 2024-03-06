@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+//the name of the function which handles absolutely ALL THE DATA(state and logic), store and actions
 import getState from "./flux.js";
 
 // Don't change, here is where we initialize our context, by default it's just going to be null.

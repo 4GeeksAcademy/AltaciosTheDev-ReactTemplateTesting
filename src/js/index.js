@@ -13,6 +13,7 @@ const root = createRoot(document.querySelector("#app"))
 
 //render your react application
 root.render(<Layout/>)
-//when using react router, LAYOUT is preferred as the main component where everything else lives inside based on the routes.
+//when using react router:
+//LAYOUT is preferred as the main component where everything else lives inside based on the routes.
 //<Layout /> which will take care of routing the users to the specific views they should see, depending on each of the particular URLs.
 
