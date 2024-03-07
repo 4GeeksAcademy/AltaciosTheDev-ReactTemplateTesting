@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from "react"
+import React, {useState, useEffect, useContext} from "react"
 //1)forma de navegar de lado a lado y cambiar ruta
 import { Link } from "react-router-dom";
 //2)otra forma de navegar de lado a lado y cambiar ruta
@@ -7,7 +7,11 @@ import { useNavigate } from "react-router";
 //allows to store the params and to use as variables to be passed unto views that need to render based on the param and to use it.
 import { useParams } from "react-router" 
 
+
+import {Context} from "../store//appContext"
+
 export const CharacterData = () => {
+    const {store, actions} = useContext(Context)
 
     //1. useState of character info
     const [person, setPerson] = useState()
@@ -46,7 +50,13 @@ export const CharacterData = () => {
                     <img src={person.imageUrl} className="card-img-top" style={{maxHeight: "200px", maxWidth: "250px"}} onClick={() => navigate(`/character/${parseInt(id)+1}`)}/>
                     <div>
                         <Link to={`/character/${parseInt(id)-1}`}><button className="btn btn-warning mt-2 me-2">PREVIOUS</button></Link>
-                        <Link to={`/character/${parseInt(id)+1}`}><button className="btn btn-primary mt-2">NEXT</button></Link>    
+                        <Link to={`/character/${parseInt(id)+1}`}><button className="btn btn-primary mt-2 me-2">NEXT</button></Link> 
+
+                        {
+                        store.favorites.find(itm => itm.id == person.id ) ?
+                        <button className="btn mt-2 btn-danger" onClick={() => actions.removeFavorite(person)}>DELETE FAV</button>   :
+                        <button className="btn mt-2 btn-success" onClick={() => actions.addFavorite(person)}>ADD FAV</button>
+                        }   
                     </div>
 
                 </div>

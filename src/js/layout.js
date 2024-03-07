@@ -33,7 +33,7 @@ const Layout = () => {
 	//BASENAME variable en el .env
 
 	return (
-		<div>
+		<div className="container">
 			{/* indicates everything insde will be conditionally rendered based on URLs, basename = origin of project URL. */}
 			<BrowserRouter basename={basename}>
 				{/* {headless component only meant to add functionality to where it wraps around.} */}

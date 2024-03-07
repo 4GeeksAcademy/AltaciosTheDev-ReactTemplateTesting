@@ -1,6 +1,7 @@
-import React, {useState, useEffect} from "react";
+import React, {useState, useEffect, useContext} from "react";
 import { Link } from "react-router-dom";
 import "../../styles/home.css";
+import {Context} from "../store/appContext"
 
 export const Home = () => {
 	const APIurl = process.env.API_URL;
@@ -29,6 +30,8 @@ export const Home = () => {
 
 //declaracion del componente de character individual para usar en el map 
 const Character = ({item}) => {
+	const {actions} = useContext(Context)
+
 	return(
 		<div className="card" style={{width: "18rem"}}>
 			<img src={item.imageUrl} className="card-img-top" style={{maxHeight: "200px"}} />
@@ -36,6 +39,7 @@ const Character = ({item}) => {
 				<h3 className="card-title">{item.fullName}</h3>
 				<p className="card-title">{item.family} - {item.title}</p>
 				<Link to={`/character/${item.id}`} className="btn btn-primary">CHARACTER DETAILS</Link>
+				<button className="btn btn-warning" onClick={() => actions.addFavorite(item)}>Add Favorite</button>
 			</div>
 		</div>
 	)
